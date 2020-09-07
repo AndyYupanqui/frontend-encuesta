@@ -37,10 +37,10 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
                 <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button [routerLink]="['/home/preguntas', row.id_pregunta ]">
+                    <button mat-icon-button [routerLink]="['/home/preguntas', row.numero ]">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button (click)="eliminarPregunta(row.numero)">
+                    <button mat-icon-button (click)="borrarPregunta(row.numero)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
@@ -55,7 +55,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modalNuevaPregunta" tabindex="-1" role="dialog" aria-labelledby="modalNuevaPregunta" aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 50%;">
         <div class="modal-content">
             <form [formGroup]="nuevoPreguntaForm" (ngSubmit)="guardarPregunta()">
                 <div class="modal-header">
@@ -75,7 +75,7 @@
                             <div class="col-md-10">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Pregunta</mat-label>
-                                    <input formControlName="pregunta" matInput autocomplete="off">
+                                    <input formControlName="descripcion" matInput autocomplete="off">
                                 </mat-form-field>
                             </div>
                             <div class="col-md-1"></div>
@@ -86,13 +86,13 @@
                             <div class="col-md-10">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Dimensión</mat-label>
-                                    <mat-select matInput formControlName="dimension">
+                                    <mat-select matInput formControlName="id_dimension">
                                         <!-- <mat-option >Ninguno</mat-option> -->
-                                        <mat-option value="capacidad_respuesta">Capacidad de Respuesta</mat-option>
-                                        <mat-option value="empatia">Empatía</mat-option>
-                                        <mat-option value="fiabilidad">Fiabilidad</mat-option>
-                                        <mat-option value="seguridad">Seguridad</mat-option>
-                                        <mat-option value="tangibilidad">Tangibilidad</mat-option>
+                                        <mat-option value="2">Capacidad de Respuesta</mat-option>
+                                        <mat-option value="4">Empatía</mat-option>
+                                        <mat-option value="1">Fiabilidad</mat-option>
+                                        <mat-option value="3">Seguridad</mat-option>
+                                        <mat-option value="5">Tangibilidad</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>

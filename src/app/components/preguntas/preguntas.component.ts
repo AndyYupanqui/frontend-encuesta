@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { PreguntasService } from '../../services/preguntas.service';
@@ -24,8 +25,8 @@ export class PreguntasComponent implements OnInit {
 
   private buildForm() {
     return this.nuevoPreguntaForm = this.formBuilder.group({
-      pregunta: ['', Validators.required],
-      dimension: ['', [Validators.required]]
+      descripcion: ['', Validators.required],
+      id_dimension: ['', [Validators.required]]
     });
   }
 
@@ -34,7 +35,8 @@ export class PreguntasComponent implements OnInit {
 
   constructor(
     private _preguntasService: PreguntasService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class PreguntasComponent implements OnInit {
             case 4: dimension = "Empatía";break;
             case 5: dimension = "Tangibilidad";break;
           }
-          this.resultado_preguntas[i] = {numero: res.preguntas[i]["id_pregunta"], pregunta: res.preguntas[i]["descripcion"].slice(3), dimension: dimension};
+          this.resultado_preguntas[i] = {numero: res.preguntas[i]["id_pregunta"], pregunta: res.preguntas[i]["descripcion"], dimension: dimension};
         }
         this.dataSource = new MatTableDataSource(this.resultado_preguntas);
         this.dataSource.paginator = this.paginator;
@@ -76,20 +78,12 @@ export class PreguntasComponent implements OnInit {
       return;
     }
 
-    var dimension = this.nuevoPreguntaForm.value.dimension;
-    var id_dimension;
+    var formData = new FormData();
 
-    switch(dimension){
-      case "fiabilidad": id_dimension = "1";break;
-      case "capacidad_respuesta": id_dimension = "2";break;
-      case "seguridad": id_dimension = "3";break;
-      case "empatia": id_dimension = "4";break;
-      case "tangibilidad": id_dimension = "5";break;
-    }
+    formData.append('descripcion', this.nuevoPreguntaForm.value.descripcion);
+    formData.append('id_dimension', this.nuevoPreguntaForm.value.id_dimension);
 
-    var nuevaPregunta = {descripcion: this.nuevoPreguntaForm.value.pregunta, id_dimension: id_dimension};
-
-    this._preguntasService.nuevaPregunta(nuevaPregunta).subscribe(
+    this._preguntasService.nuevaPregunta(formData).subscribe(
       res => {
         Swal.fire({
           type: 'success',
@@ -109,40 +103,6 @@ export class PreguntasComponent implements OnInit {
       }
     )
   }
-  
-  // guardarCliente() {
-  //   if (this.nuevoClienteForm.invalid) {
-  //     Swal.fire({
-  //       type: 'error',
-  //       title: 'Datos inválidos',
-  //       text: 'Revise nuevamente y llene correctamente los campos.'
-  //     })
-  //     return;
-  //   }
-  //   this._clienteService.nuevoCliente(this.nuevoClienteForm.value).subscribe(
-  //     res => {
-  //       this._uploadService.makeFileRequest(Global.url + "/upload-image/" + res.cliente._id, [], this.filesToUpload, 'img')
-  //         .then((result: any) => {
-  //           console.log(result);
-  //         })
-  //       Swal.fire({
-  //         type: 'success',
-  //         title: 'El cliente ha sido añadido',
-  //         confirmButtonColor: '#3085d6',
-  //         showConfirmButton: true,
-  //       }).then(
-  //         result => {
-  //           $('#modalNuevoCliente').modal('hide');
-  //           this.listarClientes();
-  //           this.nuevoClienteForm.reset();
-  //         }
-  //       )
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   )
-  // }
 
   borrarPregunta(id_pregunta) {
     Swal.fire({
@@ -161,9 +121,13 @@ export class PreguntasComponent implements OnInit {
             this.listarPreguntas();
             Swal.fire(
               'Borrado!',
-              'LA pregunta ha sido borrado correctamente',
+              'La pregunta ha sido borrado correctamente',
               'success'
-            )
+            ).then(
+              result => {
+                location.reload();
+              }
+            );
           },
           err => {
             console.log(err);
