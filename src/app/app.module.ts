@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CustomMaterialModule } from "./core-angular-material/material.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor'
@@ -21,7 +22,6 @@ import { MatDatepicker, MatNativeDateModule, MatDatepickerModule } from '@angula
 import { MatTableExporterModule } from 'mat-table-exporter'
 
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
-import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/components/compra-detail/format-datepicker';
 
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -61,7 +61,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
     MatNativeDateModule,
     MatTableExporterModule,
     PDFExportModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    NgxChartsModule,
   ],
   providers: [
     MatDatepickerModule,
@@ -72,10 +73,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
       multi: true
     },
     AuthService,
-    AuthGuard,
-    MatDatepicker,
-    {provide: DateAdapter, useClass: AppDateAdapter},
-    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,168 @@
-<p>
-  general works!
-</p>
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <!-- <i class="material-icons" style="font-size: 30px"> accessibility </i> -->
+    <i class="material-icons" style="font-size: 30px"> poll </i> General
+</div>
+
+<div class=" container-fluid mt-4" style="padding-right:4em; padding-left: 4em">
+    <div class="row buscar">
+        <div class="col-md-6 ">
+            <i class="material-icons"> search </i>
+            <mat-form-field class="mt-3">
+                <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Buscar..." autocomplete="off">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="d-flex pb-5">
+        <div class="mat-elevation-z8" style="width: 75%">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="numero">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> N° </th>
+                    <td mat-cell *matCellDef="let row"> {{row.numero}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dimension">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> DIMENSIÓN </th>
+                    <td mat-cell *matCellDef="let row"> {{row.dimension}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="muy_desacuerdo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> MUY EN DESACUERDO </th>
+                    <td mat-cell *matCellDef="let row"> {{row.muy_desacuerdo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="en_desacuerdo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> EN DESACUERDO </th>
+                    <td mat-cell *matCellDef="let row"> {{row.en_desacuerdo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="neutral">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> NEUTRAL </th>
+                    <td mat-cell *matCellDef="let row"> {{row.neutral}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="de_acuerdo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> DE ACUERDO </th>
+                    <td mat-cell *matCellDef="let row"> {{row.de_acuerdo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="muy_acuerdo">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> MUY DE ACUERDO </th>
+                    <td mat-cell *matCellDef="let row"> {{row.muy_acuerdo}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+
+        <div class="text-center ml-5 align-self-center pt-4 pb-4" style="background: lightgreen;">
+            <h4>TOTAL DE ENCUESTADOS</h4><br>
+            <h1 style="font-weight: bold;">{{ cantidad_encuestados }}</h1>
+        </div>
+    </div>
+
+    <div style="font-size: 1.4rem; margin-top: 2%;">Dimensión por Nivel de Satisfacción</div>
+
+    <div style="background: gainsboro; margin-top: 3%;">
+        <div class="text-center font-weight-bold pt-4 mb-5" style="font-size: 1.2rem">Capacidad de Respuesta</div>
+        <div class="row pb-4">
+            <div class="col-md-6">
+                <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="capacidad_respuesta"
+                    [gradient]="gradient_pie" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+
+            <div class="col-md-6">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="capacidad_respuesta"
+                    [gradient]="gradient_bar" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect1($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5" style="background: gainsboro;">
+        <div class="text-center font-weight-bold pt-4 mb-5" style="font-size: 1.2rem">Empatía</div>
+        <div class="row pb-4">
+            <div class="col-md-6">
+                <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="empatia"
+                    [gradient]="gradient_pie" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+
+            <div class="col-md-6">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="empatia"
+                    [gradient]="gradient_bar" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect1($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5" style="background: gainsboro;">
+        <div class="text-center font-weight-bold pt-4 mb-5" style="font-size: 1.2rem">Fiabilidad</div>
+        <div class="row pb-4">
+            <div class="col-md-6">
+                <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="fiabilidad"
+                    [gradient]="gradient_pie" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+
+            <div class="col-md-6">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="fiabilidad"
+                    [gradient]="gradient_bar" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect1($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5" style="background: gainsboro;">
+        <div class="text-center font-weight-bold pt-4 mb-5" style="font-size: 1.2rem">Seguridad</div>
+        <div class="row pb-4">
+            <div class="col-md-6">
+                <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="seguridad"
+                    [gradient]="gradient_pie" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+
+            <div class="col-md-6">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="seguridad"
+                    [gradient]="gradient_bar" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect1($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5" style="background: gainsboro;">
+        <div class="text-center font-weight-bold pt-4 mb-5" style="font-size: 1.2rem">Tangibilidad</div>
+        <div class="row pb-4">
+            <div class="col-md-6">
+                <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="tangibilidad"
+                    [gradient]="gradient_pie" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+                    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </ngx-charts-pie-chart>
+            </div>
+
+            <div class="col-md-6">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="tangibilidad"
+                    [gradient]="gradient_bar" [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                    (select)="onSelect1($event)">
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>

@@ -1,3 +1,3 @@
 export var Global = {
-    url: 'http://localhost:3001/inventario/api/v1'
+    url: 'http://127.0.0.1:5000'
 }

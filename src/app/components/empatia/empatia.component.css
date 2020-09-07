@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+}
+
+.modal .mat-form-field {
+    width: 100%;
+}
+
+.buscar .mat-form-field {
+    width: 80%
+}
+
+* {
+    outline: none;
+    border: 0;
+}
+
+
+/* Estilos de las tablas */
+
+.mat-column-numero {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 10%;
+}
+
+.mat-column-descripcion {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 50%;
+}
+
+.mat-column-opciones {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 40%;
+}

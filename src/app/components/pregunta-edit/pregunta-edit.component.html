@@ -1,0 +1,63 @@
+<div class="container-fluid mt-4" style="font-size: 20px; padding-right:3em; padding-left: 3em">
+    <i class="material-icons" style="font-size: 30px">edit</i> Editar Pregunta
+</div>
+
+<div class="container mt-4">
+    Coloque correctamente los datos que correspondan.
+</div>
+
+<div class="container mt-1 ">
+    <mat-card>
+        <form class="mt-2" [formGroup]="editClienteForm">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 text-center" style="font-size: 1.7em">
+                    PREGUNTA - {{idParam}}
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Pregunta</mat-label>
+                        <input formControlName="pregunta" matInput autocomplete="off">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+
+            <div class="row mt-2">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Dimensión</mat-label>
+                        <mat-select matInput formControlName="dimension">
+                            <!-- <mat-option >Ninguno</mat-option> -->
+                            <mat-option value="capacidad_respuesta">Capacidad de Respuesta</mat-option>
+                            <mat-option value="empatia">Empatía</mat-option>
+                            <mat-option value="fiabilidad">Fiabilidad</mat-option>
+                            <mat-option value="seguridad">Seguridad</mat-option>
+                            <mat-option value="tangibilidad">Tangibilidad</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row text-right mt-2">
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <a mat-button [routerLink]="[ '/home/preguntas' ]"> Regresar</a>
+                    <button class="ml-2" mat-raised-button color="primary" (click)="verValor()">Actualizar</button>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </form>
+    </mat-card>
+</div>

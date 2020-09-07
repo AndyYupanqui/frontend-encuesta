@@ -1,0 +1,61 @@
+table {
+    width: 100%;
+}
+
+.modal .mat-form-field {
+    width: 100%;
+}
+
+.buscar .mat-form-field {
+    width: 80%
+}
+
+* {
+    outline: none;
+    border: 0;
+}
+
+
+/* Estilos de las tablas */
+
+.mat-column-numero {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 5%;
+}
+
+.mat-column-dimension {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 20%;
+}
+
+.mat-column-muy_desacuerdo {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 15%;
+}
+
+.mat-column-en_desacuerdo {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 15%;
+}
+
+.mat-column-neutral {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 15%;
+}
+
+.mat-column-de_acuerdo {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 15%;
+}
+
+.mat-column-muy_acuerdo {
+    padding-left: 0px !important;
+    text-align: center !important;
+    width: 15%;
+}

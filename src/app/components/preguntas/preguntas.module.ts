@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientesRoutingModule } from './clientes-routing.module';
+import { PreguntasRoutingModule } from './preguntas-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ClientesComponent } from './clientes.component';
+import { PreguntasComponent } from './preguntas.component';
 import { CustomMaterialModule } from "../../core-angular-material/material.module";
-import { ClienteEditComponent } from '../cliente-edit/cliente-edit.component';
+import { PreguntaEditComponent } from '../pregunta-edit/pregunta-edit.component';
 
 @NgModule({
   declarations: [
-    ClientesComponent,
-    ClienteEditComponent
+    PreguntasComponent,
+    PreguntaEditComponent
   ],
   imports: [
     CommonModule,
-    ClientesRoutingModule,
+    PreguntasRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ClientesRoutingModule,
+    PreguntasRoutingModule,
     CustomMaterialModule
   ]
 })
-export class ClientesModule { }
+export class PreguntasModule { }

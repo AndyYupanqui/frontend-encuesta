@@ -25,6 +25,7 @@
         "@progress/kendo-angular-common": "^1.0.0",
         "@progress/kendo-angular-pdf-export": "^2.0.0",
         "@progress/kendo-drawing": "^1.5.12",
+        "@swimlane/ngx-charts": "^12.1.0",
         "cdk-table-exporter": "^1.0.2",
         "core-js": "^2.5.4",
         "jspdf": "^1.5.3",

@@ -24,14 +24,21 @@ table {
     width: 10%;
 }
 
-.mat-column-descripcion {
+.mat-column-pregunta {
     padding-left: 0px !important;
     text-align: center !important;
     width: 50%;
 }
 
-.mat-column-opciones {
+.mat-column-dimension {
     padding-left: 0px !important;
     text-align: center !important;
-    width: 40%;
+    width: 20%;
+}
+
+
+.mat-column-acciones {
+    padding-right: 0px !important;
+    text-align: center !important;
+    width: 10%;
 }

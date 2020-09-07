@@ -23,14 +23,7 @@ const appRoutes: Routes = [
   {
     path: 'home', component: HomeLayoutComponent, 
     children: [
-      { path: '', redirectTo: 'productos', pathMatch: 'full' },
-      { path: 'proveedores', loadChildren: './components/proveedores/proveedores.module#ProveedoresModule' },
-      { path: 'diagnostico', loadChildren: './components/diagnostico/diagnostico.module#DiagnosticoModule' },
-      { path: 'productos', loadChildren: './components/producto/producto.module#ProductoModule' },
-      { path: 'clientes', loadChildren: './components/clientes/clientes.module#ClientesModule' },
-      { path: 'compra', loadChildren: './components/compra/compra.module#CompraModule' },
-      { path: 'venta', loadChildren: './components/venta/venta.module#VentaModule' },
-      { path: 'remision', loadChildren: './components/remision/remision.module#RemisionModule' },
+      { path: 'preguntas', loadChildren: './components/preguntas/preguntas.module#PreguntasModule' },
       { path: 'general', component: GeneralComponent },
       { path: 'capacidad-respuesta', component: CapacidadRespuestaComponent },
       { path: 'seguridad', component: SeguridadComponent },

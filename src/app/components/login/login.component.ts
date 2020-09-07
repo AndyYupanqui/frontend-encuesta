@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         type: 'error',
         title: 'Datos inválidos',
         text: 'Revise nuevamente y llene correctamente los campos.'
-      })
+      });
       for (let i in this.loginForm.controls)
         this.loginForm.controls[i].markAsTouched();
       return;
@@ -64,7 +64,22 @@ export class LoginComponent implements OnInit {
 
     if(this.loginForm.value.correo == "alejonc15@gmail.com" && this.loginForm.value.password == "123456"){
       localStorage.setItem('msgStartSession', 'true');
+      localStorage.setItem('rol', 'usuario');
       this._router.navigate(['/home/general']);
+    }
+    else{
+      if(this.loginForm.value.correo == "andyyupanqui@gmail.com" && this.loginForm.value.password == "123456"){
+        localStorage.setItem('msgStartSession', 'true');
+        localStorage.setItem('rol', 'administrador');
+        this._router.navigate(['/home/preguntas']);
+      }
+      else{
+        Swal.fire({
+          type: 'error',
+          title: 'Datos inválidos',
+          text: 'Revise nuevamente y llene correctamente los campos.'
+        });
+      }
     }
   }
 

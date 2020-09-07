@@ -12,56 +12,60 @@
     <mat-sidenav #sidenav mode="side" opened class="example-sidenav" style="background:rgb(44, 62, 80); z-index: -1;">
         <hr>
         <div style="height: 215px;" class="text-center">
-            <p class="mt-1" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Bienvenido</p>
-                <img src="../../../assets/alejo.png" alt="" width="64px"
+            <p *ngIf="usuario" class="mt-1" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Bienvenido</p>
+                <img *ngIf="usuario" src="../../../assets/alejo.png" alt="" width="64px"
                     style="border-radius: 72px; width:72px; height:72px">
-            <p style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Alejandro Villanueva</p>
+            <p *ngIf="usuario" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Alejandro Villanueva</p>
+            <p *ngIf="administrador" class="mt-1" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Bienvenido</p>
+                <img *ngIf="administrador" src="../../../assets/andy.jpg" alt="" width="64px"
+                    style="border-radius: 72px; width:72px; height:72px">
+            <p *ngIf="administrador" style="color: white; font-size: 16px; font-family: sans-serif; font-weight: bold">Andy Yupanqui</p>
             <button mat-raised-button color="warn" (click)="logout()">Cerrar Sesión</button>
         </div>
         <mat-divider></mat-divider>
         <mat-toolbar style="background: transparent">
+
+            <mat-toolbar-row *ngIf="administrador" id="btn-preguntas" [routerLink]="[ '/home/preguntas']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Preguntas</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">help</i>
+            </mat-toolbar-row>
             
-            <mat-toolbar-row id="btn-general" [routerLink]="[ '/home/general']" routerLinkActive="active-link">
+            <mat-toolbar-row *ngIf="usuario" id="btn-general" [routerLink]="[ '/home/general']" routerLinkActive="active-link">
                 <span *ngIf="isExpanded || isShowing" style="color: white">General</span>
                 <span class="example-spacer"></span>
                 <i class="material-icons" style="color: white">poll</i>
             </mat-toolbar-row>
 
-            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/capacidad-respuesta']">
+            <mat-toolbar-row *ngIf="usuario" id="btn-capacidad-respuesta" [routerLink]="[ '/home/capacidad-respuesta']" routerLinkActive="active-link">
                 <span *ngIf="isExpanded || isShowing" style="color: white">Capacidad de Respuesta</span>
                 <span class="example-spacer"></span>
                 <i class="material-icons" style="color: white">poll</i>
             </mat-toolbar-row>
 
-            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/seguridad']">
-                <span *ngIf="isExpanded || isShowing" style="color: white">Seguridad</span>
-                <span class="example-spacer"></span>
-                <i class="material-icons" style="color: white">poll</i>
-            </mat-toolbar-row>
-
-            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/fiabilidad']">
-                <span *ngIf="isExpanded || isShowing" style="color: white">Fiabilidad</span>
-                <span class="example-spacer"></span>
-                <i class="material-icons" style="color: white">poll</i>
-            </mat-toolbar-row>
-
-            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/empatia']">
+            <mat-toolbar-row *ngIf="usuario" id="btn-empatia" [routerLink]="[ '/home/empatia']" routerLinkActive="active-link">
                 <span *ngIf="isExpanded || isShowing" style="color: white">Empatía</span>
                 <span class="example-spacer"></span>
                 <i class="material-icons" style="color: white">poll</i>
             </mat-toolbar-row>
 
-            <mat-toolbar-row id="btn-diagnostico" [routerLink]="[ '/home/tangibilidad']">
-                <span *ngIf="isExpanded || isShowing" style="color: white">Tangibilidad</span>
+            <mat-toolbar-row *ngIf="usuario" id="btn-fiabilidad" [routerLink]="[ '/home/fiabilidad']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Fiabilidad</span>
                 <span class="example-spacer"></span>
                 <i class="material-icons" style="color: white">poll</i>
             </mat-toolbar-row>
 
-            <!-- <mat-toolbar-row *ngIf="admin || ventas" [routerLink]="[ '/home/venta']" routerLinkActive="active-link">
-                <span *ngIf="isExpanded || isShowing" style="color: white">Ventas</span>
+            <mat-toolbar-row *ngIf="usuario" id="btn-seguridad" [routerLink]="[ '/home/seguridad']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Seguridad</span>
                 <span class="example-spacer"></span>
-                <i class="material-icons" style="color: white">local_offer</i>
-            </mat-toolbar-row> -->
+                <i class="material-icons" style="color: white">poll</i>
+            </mat-toolbar-row>
+
+            <mat-toolbar-row *ngIf="usuario" id="btn-tangibilidad" [routerLink]="[ '/home/tangibilidad']" routerLinkActive="active-link">
+                <span *ngIf="isExpanded || isShowing" style="color: white">Tangibilidad</span>
+                <span class="example-spacer"></span>
+                <i class="material-icons" style="color: white">poll</i>
+            </mat-toolbar-row>
 
         </mat-toolbar>
         <mat-divider></mat-divider>
