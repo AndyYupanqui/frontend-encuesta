@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { UploadService } from '../../services/upload.service';
 import Swal from 'sweetalert2'
 export let browserRefresh = false;
 @Component({

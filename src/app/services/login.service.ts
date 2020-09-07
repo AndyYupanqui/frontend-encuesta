@@ -18,16 +18,4 @@ export class LoginService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post(this.url + '/login', params, { headers: headers });
     }
-
-    // verify(): Observable<any>{
-    //     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    //     return this._http.get(this.url + '/verify', { headers: headers });
-    // }
-
-    // logout(logoutData): Observable<any> {
-    //     let params = JSON.stringify(logoutData);
-    //     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    //     return this._http.post(this.url + 'logout', params, { headers: headers });
-    // }
-    
 }
