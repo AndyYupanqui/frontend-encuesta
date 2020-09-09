@@ -15,6 +15,7 @@ export class GeneralComponent implements OnInit {
   cantidad_encuestados: number;
   dimension = ["Capacidad de Respuesta", "Empatía", "Fiabilidad", "Seguridad", "Tangibilidad"];
   resultado_dimension = [];
+  click : boolean = false;
 
   view: any[] = [450, 300];
 
@@ -72,6 +73,15 @@ export class GeneralComponent implements OnInit {
     this._generalService.cantidadEncuestados().subscribe(
       res => {
         this.cantidad_encuestados = res.respuesta["cantidad encuestados"];
+      }
+    )
+  }
+
+  actualizarDatos(){
+    this.click = !this.click;
+    this._generalService.actualizarDatos().subscribe(
+      res=>{
+        location.reload();
       }
     )
   }

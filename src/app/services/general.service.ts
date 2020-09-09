@@ -20,4 +20,9 @@ export class GeneralService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.get(this.url + '/alumnos', { headers: headers });
     }
+
+    actualizarDatos(): Observable<any> {
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get(this.url + '/traer_data', { headers: headers });
+    }
 }

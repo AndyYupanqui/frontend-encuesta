@@ -43,4 +43,5 @@ export class PreguntasService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.delete(this.url + '/pregunta/'+id, { headers: headers });
     }
+    
 }
